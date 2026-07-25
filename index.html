@@ -133,12 +133,11 @@ img{max-width:100%}
 .plate svg{width:46%;max-width:96px;height:auto;stroke:var(--ink);stroke-width:1.4;fill:none;opacity:.62;
   stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
 .card:hover .plate svg{opacity:.85;stroke:var(--ink-2)}
-<<<<<<< HEAD
+
 /* real product photo sits on top of the icon; if it 404s it removes itself and the icon shows */
 .plate .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
   z-index:3;background:var(--paper);display:block}
-=======
->>>>>>> origin/main
+
 .tag{position:absolute;top:0;left:0;z-index:2;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
   text-transform:uppercase;font-weight:600;padding:5px 8px;color:#fff}
 .tag.kenstar{background:var(--signal)}
@@ -668,12 +667,10 @@ catsEl.innerHTML='<button class="chip" data-cat="all" aria-pressed="true">All ca
   cats.map(c=>`<button class="chip" data-cat="${c}" aria-pressed="false">${c}</button>`).join("");
 
 function esc(s){return s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
-<<<<<<< HEAD
+
 /* filename slugs — must match the folders in /photos.  "Matrix 2000W Steam Iron" -> "matrix-2000w-steam-iron" */
 const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
 const photoSrc=p=>`photos/${slug(p.b)}/${slug(p.n)}.jpg`;
-=======
->>>>>>> origin/main
 
 function render(){
   const q=fQ.trim().toLowerCase();
@@ -692,12 +689,9 @@ function render(){
     const msg=encodeURIComponent(`Hi Aarna Associates — stock and rate for ${p.b} ${p.n}?`);
     return `<article class="card">
       <div class="plate"><span class="tag ${cls[p.b]}">${abbr[p.b]}</span>
-<<<<<<< HEAD
         <svg viewBox="0 0 76 76" aria-hidden="true">${ICON[p.i]||ICON.pan}</svg>
         <img class="shot" loading="lazy" alt="${esc(p.b)} ${esc(p.n)}" src="${photoSrc(p)}" onerror="this.remove()"></div>
-=======
         <svg viewBox="0 0 76 76" aria-hidden="true">${ICON[p.i]||ICON.pan}</svg></div>
->>>>>>> origin/main
       <div class="card-body">
         <span class="card-cat">${esc(p.c)}</span>
         <h3 class="card-name">${esc(p.n)}</h3>
