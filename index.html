@@ -134,9 +134,15 @@ img{max-width:100%}
   stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
 .card:hover .plate svg{opacity:.85;stroke:var(--ink-2)}
 
-/* real product photo sits on top of the icon; if it 404s it removes itself and the icon shows */
-.plate .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;
-  z-index:3;background:var(--paper);display:block}
+/* real product photo — transparent cutout floats on the plate.
+   contain keeps the product's own proportions (never stretched or cropped);
+   padding gives it breathing room so every card reads consistently. */
+.plate .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;
+  padding:9% 12%;z-index:3;display:block;transition:transform .18s}
+.card:hover .plate .shot{transform:scale(1.04)}
+/* when a photo is present, hide the line icon so the two never overlap ("merge") */
+.plate:has(img.shot) svg{display:none}
+.plate:has(img.shot)::after{opacity:.55}
 
 .tag{position:absolute;top:0;left:0;z-index:2;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;
   text-transform:uppercase;font-weight:600;padding:5px 8px;color:#fff}
@@ -383,14 +389,14 @@ img{max-width:100%}
           <div><dt>Firm</dt><dd>Aarna Associates — appliance &amp; houseware distribution</dd></div>
           <div><dt>Phone</dt><dd><a href="tel:+919690900444">+91 96909 00444</a></dd></div>
           <div><dt>WhatsApp</dt><dd><a href="https://wa.me/919690900444">Message the desk</a></dd></div>
-<<<<<<< HEAD
+
           <div><dt>Office line</dt><dd><a href="tel:+917017808591">+91 70178 08591</a></dd></div>
           <div><dt>Territory</dt><dd>Dehradun and adjoining Uttarakhand</dd></div>
           <div><dt>Address</dt><dd>60 Tyagi Road, Dehradun, Uttarakhand</dd></div>
-=======
+
           <div><dt>Territory</dt><dd>Kumaon and adjoining Uttarakhand · Haldwani base</dd></div>
           <div><dt>Address</dt><dd>Add street address here</dd></div>
->>>>>>> origin/main
+
           <div><dt>Order hours</dt><dd>Monday to Saturday, 10:00 – 19:00</dd></div>
         </dl>
       </div>
@@ -670,7 +676,7 @@ function esc(s){return s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;
 
 /* filename slugs — must match the folders in /photos.  "Matrix 2000W Steam Iron" -> "matrix-2000w-steam-iron" */
 const slug=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
-const photoSrc=p=>`photos/${slug(p.b)}/${slug(p.n)}.jpg`;
+const photoSrc=p=>`photos/${slug(p.b)}/${slug(p.n)}.png`;
 
 function render(){
   const q=fQ.trim().toLowerCase();
